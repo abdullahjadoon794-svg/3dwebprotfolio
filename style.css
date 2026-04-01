@@ -1,0 +1,572 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0c0c0c;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Typography Tokens */
+a { text-decoration: none; color: inherit; }
+
+/* Header/Nav */
+header {
+    width: 100%;
+    padding: 2.5rem 5%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+nav a {
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #a0a0a0;
+}
+
+/* Hero Section */
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 80px; /* Accounts for fixed header slightly */
+}
+
+/* Giant Background Text */
+.background-text {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(5rem, 12vw, 15rem); /* Reduced dynamic huge text */
+    font-weight: 700;
+    color: #666666; /* Dimmed slightly so foreground text is readable */
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 1; /* Behind image */
+    text-align: center;
+    top: 30%; /* Moved higher up to prevent overlap with left text */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* Content Layout */
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 5%;
+    position: relative;
+    z-index: 5; /* Above background text */
+    height: 100%;
+}
+
+/* Left Text */
+.left-text {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    max-width: 280px;
+    color: #d0d0d0;
+}
+
+.left-text p {
+    text-transform: uppercase;
+}
+
+/* Center Image */
+.image-container {
+    flex: 0 0 auto;
+    width: 650px; /* Large center area */
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px; /* For 3D transforms */
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
+    /* Transform managed by JS entirely */
+}
+
+/* Right CTA Button */
+.right-cta {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.gradient-btn {
+    position: relative;
+    background: transparent;
+    border: none;
+    padding: 3px;
+    border-radius: 40px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Gradient Border Setup */
+.gradient-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, #FF3366, #FF9933, #CC33FF, #FF3366);
+    background-size: 300% 100%;
+    z-index: -1;
+    animation: gradientMove 4s linear infinite;
+    border-radius: 40px;
+}
+
+.btn-text {
+    display: block;
+    background-color: #0c0c0c;
+    color: #FFF;
+    padding: 1.1rem 2.8rem;
+    border-radius: 37px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.gradient-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
+}
+
+.gradient-btn:hover .btn-text {
+    background-color: transparent; /* Lets gradient fill the button */
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Subtle Cursor Glow to emulate premium dark modes */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    mix-blend-mode: screen;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 3rem;
+    }
+    .background-text {
+        font-size: 15vw;
+        transform: translate(-50%, -50%);
+    }
+    .left-text, .right-cta {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+    }
+    .image-container {
+        width: 80%;
+        max-width: 500px;
+    }
+}
+
+/* =========================================
+   Page 2: Projects Marquee & Social Links
+========================================= */
+
+.projects-section {
+    width: 100%;
+    min-height: 100vh; /* Minimum full screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 80px 0 40px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    background-color: #0c0c0c;
+}
+
+.section-title, .footer-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    color: #e0e0e0;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Marquee Implementation */
+.marquee-wrapper {
+    width: 100vw; /* Strict full width to prevent scrollbars */
+    overflow: hidden; /* Hide anything outside viewport */
+    display: flex;
+    white-space: nowrap;
+    position: relative;
+    padding: 40px 0;
+}
+
+.marquee-track {
+    display: flex;
+    flex-shrink: 0; /* Prevents track from squishing */
+    /* linear guarantees perfectly smooth constant speed, infinite loops the animation */
+    /* The museum-style relaxing speed is controlled by the duration (60s) */
+    animation: marqueeScroll 60s linear infinite; 
+}
+
+.marquee-track img {
+    height: 400px; /* Fixed height for uniformity */
+    width: auto; /* Dynamic width according to their original aspect ratios */
+    object-fit: contain; /* Prevents cropping */
+    border-radius: 12px; /* Smooth rounded corners */
+    margin: 0 15px; /* Gap between images */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Slight elevation */
+    transition: transform 0.4s ease;
+}
+
+.marquee-track img:hover {
+    transform: scale(1.02); /* Slight pop on hover for interactivity */
+}
+
+/* Pure CSS Infinite Loop Magic */
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%); /* Moves entire track out exactly once */
+    }
+}
+
+/* Seamlessly pausing the track string hover if desired */
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused; 
+}
+
+/* Social Connectivity Footer */
+.social-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.social-links {
+    display: flex;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.social-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #a0a0a0;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Modern clean hover underline effect */
+.social-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #FF3366;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.social-item:hover {
+    color: #ffffff;
+}
+
+.social-item:hover::after {
+    width: 100%; /* Line expands from center */
+}
+
+/* =========================================
+   Page 3: Stacking Video Services
+========================================= */
+
+.services-container {
+    width: 100%;
+    padding: 0 5% 15vh 5%; /* Space around sides and large scroll room at bottom */
+    position: relative;
+    z-index: 10;
+    margin-top: 50px;
+}
+
+.service-card {
+    position: sticky;   /* This enables the brilliant stacking effect! */
+    top: 5vh;           /* Card sticks elegantly 5vh from top of screen */
+    height: 85vh;       /* Locked perfectly into viewport so nothing overlaps offscreen */
+    overflow-y: auto;   /* Automatically scrolls internally if 3+ videos overflow the card height! */
+    width: 100%;
+    margin-bottom: 5vh; 
+    border-radius: 40px;
+    padding: 60px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 -20px 50px rgba(0,0,0,0.6); /* Creates dark depth on stacking edges */
+    transition: transform 0.3s ease;
+    
+    /* Clean, invisible scrollbars so it still looks premium */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.service-card::-webkit-scrollbar {
+    display: none;
+}
+
+/* Alternating Premium Gray/Charcoal Backgrounds for Stacking Contrast */
+.card-color-0 { background-color: #1a1a1a; }
+.card-color-1 { background-color: #222222; }
+.card-color-2 { background-color: #121212; }
+.card-color-3 { background-color: #2a2a2a; }
+.card-color-4 { background-color: #181818; }
+
+.service-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4.5rem;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Fluid Responsive Layout handling anywhere from 1 to N videos flawlessly */
+.video-grid {
+    display: grid;
+    /* Auto-fit creates columns dynamically. minmax(400px) forces breaks when packed */
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px;
+    width: 100%;
+}
+
+.service-video, .iframe-container {
+    width: 100%;
+    height: 55vh; /* Unified height for all service items */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+    overflow: hidden;
+    position: relative;
+    background: #000;
+}
+
+.service-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform: scale(1);
+    transition: transform 0.5s ease;
+}
+
+/* Button to open live link since iframes can sometimes be finicky */
+.iframe-link-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 51, 102, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.iframe-container:hover .iframe-link-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.iframe-link-btn:hover {
+    background: #FF3366;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   Page 2.5: Tools Marquee
+========================================= */
+
+.tools-marquee-section {
+    padding: 60px 0;
+    background: #0c0c0c;
+    overflow: hidden;
+}
+
+.tools-section-title {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: #666;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.logo-marquee-wrapper {
+    display: flex;
+    white-space: nowrap;
+}
+
+.logo-marquee-track {
+    display: flex;
+    animation: marqueeScroll 30s linear infinite;
+}
+
+.tool-logo {
+    height: 60px;
+    margin: 0 50px;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: all 0.4s ease;
+}
+
+.tool-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* =========================================
+   Page 4: Skills Stacking
+========================================= */
+
+.skills-stacking-section {
+    width: 100%;
+    padding: 100px 5% 10vh 5%; /* Reduced bottom padding */
+    position: relative;
+    z-index: 10;
+}
+
+.skill-card {
+    position: sticky;
+    top: 25vh; /* Adjusted for better visibility */
+    height: 150px; /* Much more compact and minimalistic! */
+    width: 100%;
+    margin-bottom: 5vh;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+    transition: transform 0.4s ease;
+}
+
+.skill-card-0 { background-color: #111; border: 1px solid #333; }
+.skill-card-1 { background-color: #1a1a1a; border: 1px solid #333; }
+.skill-card-2 { background-color: #0d0d0d; border: 1px solid #333; }
+.skill-card-3 { background-color: #151515; border: 1px solid #333; }
+.skill-card-4 { background-color: #1c1c1c; border: 1px solid #333; }
+
+.skill-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Scaled down for minimalism */
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.skill-card:hover .skill-name {
+    color: #FF3366;
+    transition: color 0.3s ease;
+}
+
+/* Contact Footer Enhancements */
+.contact-details {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-details p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    margin: 10px 0;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.contact-details a {
+    color: inherit;
+}
+
+.contact-details p:hover {
+    color: #FF3366;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optional responsive adjustments */
+@media (max-width: 900px) {
+    .marquee-track img {
+        height: 250px;
+    }
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
