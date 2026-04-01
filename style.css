@@ -93,18 +93,18 @@ nav a:hover {
     line-height: 1.8;
     letter-spacing: 0.5px;
     font-weight: 600;
-    max-width: 280px;
     color: #d0d0d0;
 }
 
 .left-text p {
     text-transform: uppercase;
+    max-width: 280px; /* Constrain text width without breaking flex balance */
 }
 
 /* Center Image */
 .image-container {
     flex: 0 0 auto;
-    width: 500px; /* Reduced from 650px */
+    width: 500px;
     max-width: 45vw;
     display: flex;
     justify-content: center;
@@ -115,6 +115,8 @@ nav a:hover {
 .hero-image {
     width: 100%;
     height: auto;
+    display: block;
+    margin: 0 auto;
     object-fit: contain;
     filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
     /* Transform managed by JS entirely */
