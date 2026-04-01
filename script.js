@@ -95,43 +95,34 @@ const loadServices = async () => {
         services.forEach((service, index) => {
             const colorClass = `card-color-${index % 5}`;
             
-            // 1. Handle Web Services (Each link gets its own full card)
-            if (service.links && service.links.length > 0) {
-                service.links.forEach((link, linkIndex) => {
-                    const card = document.createElement('div');
-                    // We slightly alternate colors even for sub-links
-                    const subColorClass = `card-color-${(index + linkIndex) % 5}`;
-                    card.className = `service-card ${subColorClass} web-service-card`;
-                    
-                    card.innerHTML = `
-                        <h3 class="service-title">${service.name}</h3>
-                        <div class="iframe-container full-height-iframe">
-                            <iframe src="${link}" class="service-iframe" loading="lazy" frameborder="0"></iframe>
-                            <a href="${link}" target="_blank" class="iframe-link-btn">OPEN LIVE</a>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } 
-            // 2. Handle Video Services (Standard Grid)
-            else if (service.videos && service.videos.length > 0) {
-                const videosHTML = service.videos.map(videoPath => `
-                    <video class="service-video" autoplay loop muted playsinline>
-                        <source src="${videoPath}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                `).join('');
+            // 1. Render all videos for this service
+            const videosHTML = (service.videos || []).map(videoPath => `
+                <video class="service-video" autoplay loop muted playsinline>
+                    <source src="${videoPath}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `).join('');
 
-                const card = document.createElement('div');
-                card.className = `service-card ${colorClass}`;
-                card.innerHTML = `
-                    <h3 class="service-title">${service.name}</h3>
-                    <div class="video-grid">
-                        ${videosHTML}
-                    </div>
-                `;
-                container.appendChild(card);
-            }
+            // 2. Render all web links for this service
+            const linksHTML = (service.links || []).map(link => `
+                <div class="iframe-container full-height-iframe">
+                    <iframe src="${link}" class="service-iframe" loading="lazy" frameborder="0"></iframe>
+                    <a href="${link}" target="_blank" class="iframe-link-btn">OPEN LIVE</a>
+                </div>
+            `).join('');
+
+            // 3. Create a single card for the entire service
+            const card = document.createElement('div');
+            card.className = `service-card ${colorClass}`;
+            card.innerHTML = `
+                <h3 class="service-title">${service.name}</h3>
+                <div class="video-grid">
+                    ${videosHTML}
+                    ${linksHTML}
+                </div>
+            `;
+            
+            container.appendChild(card);
         });
 
     } catch (error) {

@@ -1,5 +1,12 @@
 [
   {
+    "name": "3D Interactive Webpages",
+    "links": [
+      "https://proj-spline12.netlify.app/",
+      "https://aiagentxup2.netlify.app/"
+    ]
+  },
+  {
     "name": "Cinematics",
     "videos": [
       "videos/cinematics/c1.mp4",
@@ -34,13 +41,6 @@
     "videos": [
       "videos/SaS%20advertisement/2.mp4",
       "videos/SaS%20advertisement/Video%20Project%202.mp4"
-    ]
-  },
-  {
-    "name": "Web Visuals",
-    "links": [
-      "https://proj-spline12.netlify.app/",
-      "https://aiagentxup2.netlify.app/"
     ]
   }
 ]

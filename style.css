@@ -59,17 +59,17 @@ nav a:hover {
 .background-text {
     position: absolute;
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(5rem, 12vw, 15rem); /* Reduced dynamic huge text */
+    font-size: clamp(3.5rem, 10vw, 11rem); /* Reduced for more airy feel */
     font-weight: 700;
-    color: #666666; /* Dimmed slightly so foreground text is readable */
+    color: #444444; /* Dimmed further for minimalism */
     line-height: 1;
     white-space: nowrap;
-    z-index: 1; /* Behind image */
+    z-index: 1;
     text-align: center;
-    top: 30%; /* Moved higher up to prevent overlap with left text */
+    top: 35%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.8;
+    opacity: 0.6;
     pointer-events: none;
 }
 
@@ -104,12 +104,12 @@ nav a:hover {
 /* Center Image */
 .image-container {
     flex: 0 0 auto;
-    width: 650px; /* Large center area */
-    max-width: 50vw;
+    width: 500px; /* Reduced from 650px */
+    max-width: 45vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1200px; /* For 3D transforms */
+    perspective: 1200px;
 }
 
 .hero-image {
@@ -239,7 +239,7 @@ nav a:hover {
 
 .section-title, .footer-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 3rem;
+    font-size: 2.2rem; /* Reduced from 3rem */
     color: #e0e0e0;
     letter-spacing: 2px;
     margin-bottom: 20px;
@@ -264,12 +264,12 @@ nav a:hover {
 }
 
 .marquee-track img {
-    height: 400px; /* Fixed height for uniformity */
-    width: auto; /* Dynamic width according to their original aspect ratios */
-    object-fit: contain; /* Prevents cropping */
-    border-radius: 12px; /* Smooth rounded corners */
-    margin: 0 15px; /* Gap between images */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Slight elevation */
+    height: 320px; /* Reduced from 400px */
+    width: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    margin: 0 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: transform 0.4s ease;
 }
 
@@ -352,16 +352,16 @@ nav a:hover {
 .service-card {
     position: sticky;   /* This enables the brilliant stacking effect! */
     top: 5vh;           /* Card sticks elegantly 5vh from top of screen */
-    height: 85vh;       /* Locked perfectly into viewport so nothing overlaps offscreen */
+    height: 70vh;       /* Reduced from 85vh for 'Layered Deck' look */
     overflow-y: auto;   /* Automatically scrolls internally if 3+ videos overflow the card height! */
     width: 100%;
     margin-bottom: 5vh; 
-    border-radius: 40px;
-    padding: 60px 5%;
+    border-radius: 30px; /* Slightly tighter corners */
+    padding: 40px 5%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: 0 -20px 50px rgba(0,0,0,0.6); /* Creates dark depth on stacking edges */
+    box-shadow: 0 -20px 50px rgba(0,0,0,0.7); /* Deepened for layering effect */
     transition: transform 0.3s ease;
     
     /* Clean, invisible scrollbars so it still looks premium */
@@ -382,9 +382,9 @@ nav a:hover {
 
 .service-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 4.5rem;
+    font-size: 3.2rem; /* Reduced from 4.5rem */
     color: #ffffff;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -400,7 +400,7 @@ nav a:hover {
 
 .service-video, .iframe-container {
     width: 100%;
-    height: 55vh; /* Unified height for standard grid items */
+    height: 42vh; /* Reduced from 55vh for sleekness */
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.7);
     overflow: hidden;
@@ -410,15 +410,18 @@ nav a:hover {
 
 /* New class for full-height web showcases */
 .full-height-iframe {
-    height: 70vh !important; /* Forces it to fill most of the sticky card */
+    height: 42vh !important; /* Matched with videos for a perfect grid! */
     margin-top: 10px;
+    /* This container holds the scaled content */
+    overflow: hidden;
 }
 
 .service-iframe {
-    width: 100%;
-    height: 100%;
+    width: 150%; /* Oversized for scaling */
+    height: 150%; /* Oversized for scaling */
     border: none;
-    transform: scale(1);
+    transform: scale(0.67); /* "Zoom out" effect to show More of the page */
+    transform-origin: top left;
     transition: transform 0.5s ease;
 }
 
@@ -482,8 +485,8 @@ nav a:hover {
 }
 
 .tool-logo {
-    height: 60px;
-    margin: 0 50px;
+    height: 45px; /* Reduced from 60px */
+    margin: 0 40px;
     filter: grayscale(100%);
     opacity: 0.5;
     transition: all 0.4s ease;
@@ -508,11 +511,11 @@ nav a:hover {
 
 .skill-card {
     position: sticky;
-    top: 25vh; /* Adjusted for better visibility */
-    height: 150px; /* Much more compact and minimalistic! */
+    top: 25vh;
+    height: 110px; /* Reduced from 150px */
     width: 100%;
     margin-bottom: 5vh;
-    border-radius: 20px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -528,7 +531,7 @@ nav a:hover {
 
 .skill-name {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Scaled down for minimalism */
+    font-size: clamp(1.2rem, 3vw, 2.2rem); /* Reduced font range */
     color: #fff;
     text-align: center;
     text-transform: uppercase;
