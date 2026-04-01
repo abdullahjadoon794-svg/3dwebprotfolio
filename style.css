@@ -567,12 +567,102 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Optional responsive adjustments */
-@media (max-width: 900px) {
-    .marquee-track img {
-        height: 250px;
+/* Responsive Tweaks */
+@media (max-width: 1024px) {
+    header {
+        padding: 1.5rem 5%;
     }
-    .section-title {
+    
+    nav {
+        font-size: 0.75rem;
+        gap: 15px;
+    }
+
+    .content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        padding-top: 60px;
+    }
+
+    /* Reordering: Image first, then About Text, then Button */
+    .image-container {
+        order: 1;
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .left-text {
+        order: 2;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+        margin-top: -10px;
+        font-size: 0.8rem;
+    }
+
+    .right-cta {
+        order: 3;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    .background-text {
+        font-size: 18vw;
+        top: 25%;
+        transform: translate(-50%, -50%);
+        opacity: 0.6;
+    }
+
+    .section-title, .footer-title {
+        font-size: 2.2rem;
+    }
+
+    .marquee-track img {
+        height: 200px;
+    }
+
+    /* Simpler scrolling for mobile users: Disable Stacking */
+    .service-card, .skill-card {
+        position: relative !important;
+        top: 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 2rem;
+        padding: 40px 5%;
+        border-radius: 20px;
+    }
+
+    .service-title {
         font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .skill-name {
+        font-size: 2rem;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-video, .iframe-container {
+        height: 40vh;
+    }
+    
+    .full-height-iframe {
+        height: 60vh !important;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
     }
 }
