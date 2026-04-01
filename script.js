@@ -132,3 +132,34 @@ const loadServices = async () => {
 
 // Initialize dynamic services
 loadServices();
+
+/* =========================================
+   Scroll Reveal Animation Logic
+========================================= */
+
+const initScrollReveal = () => {
+    // We observe both service cards and skill cards
+    const revealElements = document.querySelectorAll('.service-card, .skill-card');
+
+    const observerOptions = {
+        threshold: 0.15, // Trigger when 15% of the card is visible
+        rootMargin: "0px 0px -50px 0px" // Trigger slightly before it hits the bottom
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Stop observing after reveal for performance
+                // observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+};
+
+// Start the observer after a small delay to ensure dynamic content is loaded
+setTimeout(initScrollReveal, 500);

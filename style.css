@@ -349,24 +349,36 @@ nav a:hover {
     margin-top: 50px;
 }
 
-.service-card {
-    position: sticky;   /* This enables the brilliant stacking effect! */
-    top: 5vh;           /* Card sticks elegantly 5vh from top of screen */
-    height: 70vh;       /* Reduced from 85vh for 'Layered Deck' look */
-    overflow-y: auto;   /* Automatically scrolls internally if 3+ videos overflow the card height! */
+.services-container {
     width: 100%;
-    margin-bottom: 5vh; 
-    border-radius: 30px; /* Slightly tighter corners */
-    padding: 40px 5%;
+    padding: 100px 5%; /* Balanced padding */
+    position: relative;
+    z-index: 10;
+}
+
+.service-card {
+    position: relative; /* Simplified: no more stacking */
+    max-width: 1200px;  /* Centered and clean */
+    margin: 0 auto 100px auto; /* Large bottom margin for breathing room */
+    height: auto;       /* Natural height based on content */
+    min-height: 400px;
+    border-radius: 30px;
+    padding: 60px 6%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: 0 -20px 50px rgba(0,0,0,0.7); /* Deepened for layering effect */
-    transition: transform 0.3s ease;
+    box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+    background-color: #1a1a1a;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Professional smoothing */
     
-    /* Clean, invisible scrollbars so it still looks premium */
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
+    /* Reveal Animation Initial State */
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.service-card.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .service-card::-webkit-scrollbar {
@@ -510,17 +522,25 @@ nav a:hover {
 }
 
 .skill-card {
-    position: sticky;
-    top: 25vh;
-    height: 110px; /* Reduced from 150px */
-    width: 100%;
-    margin-bottom: 5vh;
-    border-radius: 15px;
+    position: relative; /* Simplified: no more stacking */
+    max-width: 1200px;
+    margin: 0 auto 50px auto; /* Space between skill pills */
+    height: 110px;
+    border-radius: 60px; /* More pill-like for minimalism */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
-    transition: transform 0.4s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* Reveal Animation Initial State */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.skill-card.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .skill-card-0 { background-color: #111; border: 1px solid #333; }
